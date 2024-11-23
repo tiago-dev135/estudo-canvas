@@ -49,7 +49,7 @@
             width: 100px;
             height: 100px;
            position: absolute;
-           bottom:150px;
+           bottom:310px;
         }
         .player img{
             width: 100%;
@@ -59,7 +59,7 @@
             height: 100px;
            position: absolute;
            left: 140px;
-           bottom:75px;
+           bottom:150px;
            animation: cogumelo 20s infinite;
         }
         .solo{
@@ -153,14 +153,13 @@
             let musicaJogo = document.getElementById("musicaJogo");
 
 // Função para executar a música inicial
-function executarMusica(){
+
+        
+
+       
+            function executarMusica(){
     musicaJogo.play();
 }
-        
-
-        window.addEventListener("load",function() {
-        
-
         // Inicia a primeira música
         executarMusica();
             // Quando o botão é clicado, troca o áudio
@@ -169,7 +168,7 @@ function executarMusica(){
             musicaJogo.load(); // Recarrega o áudio com a nova fonte
             musicaJogo.play(); // Começa a tocar o novo áudio
         });
-        })
+    
     </script>
 </body>
 </html>
