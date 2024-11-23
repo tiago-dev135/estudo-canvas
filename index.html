@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            background: black;
+            margin: 0;
+            padding: 0;
+        }
+        .header{
+            height: 50px;
+            color: gold;
+            display: flex;
+            justify-content: space-around;
+        }
+        .game{
+            width: 100%;
+            height: 400px;
+            border: 2px solid black;
+            margin: 90px auto;
+            margin-bottom: 0;
+            background: rgb(14, 96, 177);
+            overflow: hidden;
+        }
+        .ceu{
+            display: flex;
+            justify-content: space-around;
+        }
+        .sol img{
+            width: 60px;
+        }
+        .nuvens{
+            position: relative;
+            
+            animation: movimento 20s infinite;
+        }
+        .nuvens img{
+            width: 100px;
+        }
+        
+        
+        .container-player{
+            width: 100%;
+        }
+        .player{
+            width: 100px;
+            height: 100px;
+           position: absolute;
+           bottom:150px;
+        }
+        .player img{
+            width: 100%;
+        }
+        .cogumelo{
+            width: 100px;
+            height: 100px;
+           position: absolute;
+           left: 140px;
+           bottom:75px;
+           animation: cogumelo 20s infinite;
+        }
+        .solo{
+            width: 100%;
+            height: 50px;
+            background: green;
+            position: relative;
+            top: 75%;
+        }
+        .controles{
+            display: flex;
+            justify-content: center;
+            margin: 50px;
+        }
+        .controles button{
+            padding: 15px;
+            border-radius: 5px;
+            margin-right: 15px;
+            background:red;
+            color:white;
+            font-weight: 900;
+        }
+
+        /*Animações */
+        @keyframes movimento {
+            0%{
+                left: 250px;
+            }
+            100%{
+                left: -550px;
+            }
+        }
+        @keyframes cogumelo{
+            0%{
+                left:140px;
+            }
+            100%{
+                left: 0px;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="pontos">
+            <h3>Pontos</h3>
+            <span>0</span>
+        </div>
+        <div class="vidas">
+            <h3>Vidas</h3>
+            <span>5</span>
+        </div>
+        <div class="nivel">
+            <h3>Nivel</h3>
+            <span>1</span>
+        </div>
+    </div>
+    <div class="game">
+        <div class="ceu">
+            <div class="sol">
+                <img src="sol.png" alt="sol">
+            </div>
+            <div class="nuvens">
+                <img src="nuvens.png" alt="nuvens">
+                <img src="nuvens.png" alt="nuvens">
+            </div>
+        </div>
+       
+            <div class="player" id="player">
+                <img src="mario.gif" alt="mario">
+                
+            </div>
+
+            <div class="cogumelo">
+                <img src="cogumelo.gif" alt="cogumelo" class="cogumelo">
+            </div>
+        
+        <div class="solo">
+
+        </div>
+    </div>
+    <div class="controles">
+        <button id="pararMusica">Pular</button>
+    </div>
+    <audio id="musicaJogo" autoplay>
+        <source src="musicaJogo.mp3" type="audio/mp3">
+    </audio>
+
+    <script>
+            let musicaJogo = document.getElementById("musicaJogo");
+
+// Função para executar a música inicial
+function executarMusica(){
+    musicaJogo.play();
+}
+        
+
+        window.addEventListener("load",function() {
+        
+
+        // Inicia a primeira música
+        executarMusica();
+            // Quando o botão é clicado, troca o áudio
+        document.getElementById("pararMusica").addEventListener("click", () => {
+            musicaJogo.src = "gemidao.mp3"; // Altere o caminho do arquivo de áudio para o novo
+            musicaJogo.load(); // Recarrega o áudio com a nova fonte
+            musicaJogo.play(); // Começa a tocar o novo áudio
+        });
+        })
+    </script>
+</body>
+</html>
