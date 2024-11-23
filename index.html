@@ -9,10 +9,28 @@
             margin: 0;
             padding: 0;
         }
+        body{
+            background: black;
+        }
+        .header{
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            height: 100px;
+            color: gold;
+        }
+        .meuns h4{
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            height: auto;
+            font-family: 'Times New Roman', Times, serif;
+            font-weight: 600;
+        }
         .container{
             width: 100%;
             height: 400px;
-            margin: 100px auto;
+            margin: 0 auto;
             overflow: hidden;
             background: black;
         }
@@ -22,6 +40,7 @@
             display: flex;
             justify-content: space-around;
             position: relative;
+            background: linear-gradient(rgb(53, 102, 208),rgb(34, 78, 173))
         }
         .sol,.nuvens{
             width: 100px;
@@ -37,11 +56,12 @@
         }
 
         .cenarioPlayer{
-            height: 70%;
+            height: 60%;
             display: flex;
             justify-content: space-between;
             align-items: flex-end;
             position: relative;
+            background: linear-gradient(rgb(34, 78, 173),rgb(53, 102, 208));
         }
         .player,.inimigo{
             width: 50px;
@@ -67,10 +87,47 @@
             }
         }
 
+        .gramado{
+            height: 10%;
+            background: green;
+        }
+        .controle{
+            height: 100px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .botaoPular{
+            width: 50px;
+            height: 50px;
+            
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        #pular{
+            background: linear-gradient(rgb(202, 22, 6),rgb(202, 22, 6));
+            padding: 10px;
+            font-size: 15px;
+        }
         
     </style>
 </head>
 <body>
+    <div class="header">
+        <div class="menus">
+            <h4>Pontos</h4>
+            <span>0</span>
+        </div>
+        <div class="menus">
+            <h4>Vidas</h4>
+            <span>5</span>
+        </div>
+        <div class="menus">
+            <h4>Nível</h4>
+            <span>1</span>
+        </div>
+    </div>
     <div class="container">
         <div class="cenarioCeu">
             <div class="sol">
@@ -88,6 +145,26 @@
                 <img src="cogumelo.gif" alt="">
             </div>
         </div>
+        <div class="gramado">
+
+        </div>
     </div>
+    <div class="controle">
+        <div class="botaoPular">
+            <button id="pular" onclick="executarMusicaJogo()">Pular</button>
+        </div>
+    </div>
+
+    <audio src="audio2.mp3" id="musicaJogo"></audio>
+    <script>
+        let musicaJogo = document.getElementById("musicaJogo")
+        function executarMusicaJogo(){
+            musicaJogo.play()
+
+        }
+        
+
+
+    </script>
 </body>
 </html>
