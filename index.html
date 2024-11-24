@@ -46,7 +46,7 @@
             display: flex;
             justify-content: space-around;
             position: relative;
-            background: linear-gradient(rgb(53, 102, 208),rgb(34, 78, 173))
+            background: rgb(53, 102, 208);
         }
         .sol,.nuvens{
             width: 100px;
@@ -67,7 +67,7 @@
             justify-content: space-between;
             align-items: flex-end;
             position: relative;
-            background: linear-gradient(rgb(34, 78, 173),rgb(53, 102, 208));
+            background: rgb(53, 102, 208);
         }
         .player{
             width: 70px;
@@ -112,7 +112,7 @@
         }
 
         .pular{
-            animation: pular 2s ease-out;
+            animation: pular 5s;
         }
 
         .animar{
@@ -188,7 +188,7 @@
                 <img src="nuvens.png" alt="" class="imgnuvens">
             </div>
         </div>
-        <div class="cenarioPlayer">
+        <div class="cenarioPlayer" style="background-image: url('Montanhasedit.png'); background-position: center; background-repeat: no-repeat; background-size: cover;">
             <div class="player" id="player">
                 <img src="marioparado.png" alt="" id="imgMario">
             </div>
@@ -211,6 +211,7 @@
     </div>
 
     <audio src="musicaJogo.mp3" id="musicaJogo"></audio>
+    <audio id="pulo" src="audiopulo.mp3"></audio>
     <script>
         let musica = document.getElementById("musicaJogo")
         function executarMusica() {
@@ -225,6 +226,7 @@
         let nuvens = document.getElementById("nuvens")
         let inimigo = document.getElementById("inimigo")
         let player = document.getElementById("player")
+        let audioPulo = document.getElementById("pulo")
 
         function iniciar(){
             btniniciar.classList.add("esconder") 
@@ -236,8 +238,12 @@
 
         btnPular.addEventListener("click", () => {
     // Alterna a classe 'pular' no botão
-    player.classList.toggle("pular");
-});
+            player.classList.add("pular")
+            audioPulo.play()
+            setTimeout(()=>{
+                player.classList.remove("pular")
+            },500)
+        });
         
         
 
