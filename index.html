@@ -3,6 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!--font awsome-->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+
     <title>Jogo do Mario</title>
     <!--Apenas estudo-->
     <style>
@@ -19,6 +23,7 @@
             align-items: center;
             height: 100px;
             color: gold;
+            
         }
         .meuns h4{
             display: flex;
@@ -33,7 +38,7 @@
             height: 400px;
             margin: 0 auto;
             overflow: hidden;
-            background: black;
+            background:linear-gradient(rgb(53, 102, 208),rgb(34, 78, 173));
         }
         .cenarioCeu{
             width: 100%;
@@ -76,19 +81,17 @@
         .inimigo{
             width: 60px;
             height: 40px;
-            padding: 0;
+            left: 400px;
+            position: absolute;
         }
 
         img{
             width: 100%;
         }
-        .inimigo{
-            position: absolute;
-            animation: movimentoInimigo 10s infinite;
-        }
+       
 
         
-        @keyframes movimentoInimigo{
+        @keyframes animacaoMover{
             0%{
                 left: 450px;
             }
@@ -96,6 +99,29 @@
                 left: 0px;
             }
         }
+
+        .animar{
+            animation: animacaoMover 10s infinite;
+        }
+
+        .btnIniciar button{
+            background: linear-gradient(rgb(199, 202, 6),rgb(191, 207, 17));
+            padding: 10px;
+            font-size: 15px;
+            margin: 15px;
+        }
+
+        .btnIniciar{
+            position: absolute;
+            left: 38%;
+            top: 40%;
+        }
+
+
+        .esconder{
+            display: none;
+        }
+        
 
         .gramado{
             height: 10%;
@@ -107,18 +133,18 @@
             justify-content: center;
             align-items: center;
         }
-        .botaoPular{
+        .botoes{
             width: 50px;
             height: 50px;
-            
             display: flex;
             justify-content: center;
             align-items: center;
         }
-        #pular{
+        .botoes button{
             background: linear-gradient(rgb(202, 22, 6),rgb(202, 22, 6));
             padding: 10px;
             font-size: 15px;
+            margin: 15px;
         }
         
     </style>
@@ -143,15 +169,18 @@
             <div class="sol">
                 <img src="sol.png" alt="" class="imgsol">
             </div>
-            <div class="nuvens">
+            <div class="nuvens" id="nuvens">
                 <img src="nuvens.png" alt="" class="imgnuvens">
             </div>
         </div>
         <div class="cenarioPlayer">
             <div class="player">
-                <img src="mario.gif" alt="">
+                <img src="marioparado.png" alt="" id="imgMario">
             </div>
-            <div class="inimigo">
+            <div class="btnIniciar" id="iniciar">
+                <button onclick="iniciar()">Iniciar</button>
+            </div>
+            <div class="inimigo" id="inimigo">
                 <img src="cogumelo.gif" alt="">
             </div>
         </div>
@@ -160,18 +189,38 @@
         </div>
     </div>
     <div class="controle">
-        <div class="botaoPular">
-            <button id="pular" onclick="executarMusicaJogo()">Pular</button>
+        <div class="botoes">
+            <button id="pular"><i class="fas fa-arrow-up">Pular</i></button>
+            
         </div>
     </div>
 
-    <audio src="audio3.mp3" id="musicaJogo"></audio>
+    <audio src="musicaJogo.mp3" id="musicaJogo"></audio>
     <script>
-        let musicaJogo = document.getElementById("musicaJogo")
-        function executarMusicaJogo(){
-            musicaJogo.play()
-
+        let musica = document.getElementById("musicaJogo")
+        function executarMusica() {
+            musica.play()
         }
+
+        
+
+        let imgMario = document.getElementById("imgMario")
+        let btnPular = document.getElementById("pular");
+        let btniniciar = document.getElementById("iniciar");
+        let nuvens = document.getElementById("nuvens")
+        let inimigo = document.getElementById("inimigo")
+
+        function iniciar(){
+            btniniciar.classList.add("esconder") 
+            nuvens.classList.add("animar")
+            inimigo.classList.add("animar")
+            imgMario.src = "mariocorrendo.gif"
+            executarMusica()
+        }
+        
+        
+        
+
         
 
 
