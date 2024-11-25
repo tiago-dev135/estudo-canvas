@@ -54,7 +54,7 @@
 
         .nuvens{
             position: absolute;
-            animation: movimentoInimigo 20s infinite;
+            
         }
 
         .imgsol,.img.nuvens{
@@ -97,7 +97,7 @@
                 left: 450px;
             }
             100%{
-                left: -100px;
+                left: -200px;
             }
         }
 
@@ -106,17 +106,38 @@
                 padding-bottom:100px;
             }
 
+            50%{
+                padding-bottom: 100px;
+            }
+
+            75%{
+                padding-bottom: 100px;
+            }
+
             100%{
                 padding-bottom: 0;
             }
         }
 
         .pular{
-            animation: pular 5s;
+            animation: pular 20s;
         }
 
+        .animacaoNuvem{
+            animation: animcaoNuvem 20s infinite;
+        }
+        @keyframes animcaoNuvem{
+            0%{
+                left:400px;
+            }
+            
+
+            100%{
+                left:-200px;
+            }
+        }
         .animar{
-            animation: animacaoMover 8s infinite;
+            animation: animacaoMover 5s infinite;
         }
 
         .btnIniciar button{
@@ -227,16 +248,17 @@
         let inimigo = document.getElementById("inimigo")
         let player = document.getElementById("player")
         let audioPulo = document.getElementById("pulo")
-
+        let posicaoInimigo = inimigo.offsetLeft;
         function iniciar(){
             btniniciar.classList.add("esconder") 
-            nuvens.classList.add("animar")
+            nuvens.classList.add("animacaoNuvem")
             inimigo.classList.add("animar")
             imgMario.src = "mariocorrendo.gif"
-            let posicaoInimigo = inimigo.offsetLeft;
-            console.log(posicaoInimigo)
+            
 
             executarMusica()
+    
+           
         }
 
         btnPular.addEventListener("click", () => {
@@ -246,8 +268,16 @@
             setTimeout(()=>{
                 player.classList.remove("pular")
             },500)
+
         });
         
+    // Rastrear a posição do inimigo continuamente
+setInterval(() => {
+    if (inimigo ) {
+       console.log(posicaoInimigo)
+    } 
+}, 100); // Atualiza a cada 100 ms
+
         
 
         
