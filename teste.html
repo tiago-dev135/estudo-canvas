@@ -182,11 +182,15 @@
         let btnchute = document.getElementById("chute")
         let btnmagia = document.getElementById("magia")
 
-        function iniciarMusica() {
+        document.addEventListener('DOMContentLoaded', function() {
+            function iniciarMusica() {
             musicaJogo.play()
         }
 
         iniciarMusica()
+        });
+
+        
 
         btnmagia.addEventListener("click",()=>{
             player.classList.add("pulo")
