@@ -16,7 +16,7 @@
            background: black;
         }
         .game{
-            width: 400px;
+            width: 100%;
             height: 360px;
             border: 1px solid black;
             margin: 50px auto;
@@ -130,6 +130,24 @@
             color: #fff;
             cursor: pointer;
         }
+
+        .btnIniciar button{
+            background: linear-gradient(rgb(199, 202, 6),rgb(191, 207, 17));
+            padding: 10px;
+            font-size: 15px;
+            margin: 15px;
+        }
+
+        .btnIniciar{
+            position: absolute;
+            left: 38%;
+            top: 40%;
+        }
+
+
+        .esconder{
+            display: none;
+        }
         
 
     </style>
@@ -146,6 +164,9 @@
                 </div>
                 <img src="medidorvida.png" alt="" class="imagem-da-barra">
             </div>
+        </div>
+        <div class="btnIniciar" id="iniciar">
+            <button onclick="iniciar()">Play</button>
         </div>
         <div class="cenario-player">
             <div class="player" id="player">
@@ -182,20 +203,21 @@
         let btnchute = document.getElementById("chute")
         let btnmagia = document.getElementById("magia")
 
-        document.addEventListener('DOMContentLoaded', function() {
-            function iniciarMusica() {
+        function iniciarMusica() {
             musicaJogo.play()
         }
 
-        iniciarMusica()
-        });
+        function iniciar() {
+            document.getElementById("iniciar").classList.add("esconder")
+            iniciarMusica()
+        }
+
 
         
 
         btnmagia.addEventListener("click",()=>{
             player.classList.add("pulo")
             imgPlayer.src ="magia1.gif"
-
             
             
             setTimeout(()=>{
