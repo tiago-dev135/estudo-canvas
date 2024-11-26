@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--font awsome-->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
     <title>Document</title>
 
     <style>
@@ -10,25 +12,30 @@
             margin: 0;
             padding: 0;
         }
+        body{
+           background: black;
+        }
         .game{
-            width: 600px;
-            height: 400px;
+            width: 400px;
+            height: 360px;
             border: 1px solid black;
-            margin: 0 auto;
+            margin: 50px auto;
+            background-image: url("fundo.gif");
+            background-repeat: no-repeat;
             
         }
         .cenario-ceu{
             height:30%;
             width: 100%;
-            background: blue;
             display: flex;
             justify-content: start;
-            align-items: start;
+            align-items: center;
         }
+        
         .cenario-player{
             height: 60%;
             width: 100%;
-            background: brown;
+            
             display: flex;
             justify-content: start;
             align-items: end;
@@ -37,30 +44,57 @@
         .perfil-player{
             width: 80px;
             height: 80px;
-            background: red;
-            transition: 2s;
+            transition: 1s;
             display: flex;
-            justify-content: center;
-            align-items: center;
+            flex-direction: column;
+            align-items: start;
         }
+        /*Medidor de vida*/
+        .container-barra-vida{
+            position: relative;
+            width: 200px;
+            height: 50px;
+            overflow: hidden;
+        }
+        .barra-de-vida{
+            position: absolute;
+            top:42%;
+            left: 10%;
+            width: 90%;
+            height: 20%;
+            z-index: 1;
+            background: rgb(231, 227, 14);
+            transition: 3;
+        }
+
+        .imagem-da-barra{
+            position: absolute;
+            top:0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 2;
+        }
+
 
         .player{
             width: 80px;
             height: 80px;
-            background: red;
-            transition: 2s;
             display: flex;
             justify-content: center;
             align-items: center;
+            transition: 1.5s;
             
         }
 
         @keyframes pulo{
             0%{
-                padding-bottom: 0px;
+                padding-bottom: 50px;
+                transition: 1s;
             }
             100%{
                 padding-bottom: 50px;
+                
             }
         }
         .pulo{
@@ -74,19 +108,24 @@
         .cenario-chao{
             height: 10%;
             width: 100%;
-            background: green; 
         }
 
         .controles{
-            margin-top: 50px;
+            margin-top: 25px;
+            height: auto;
+            display: flex;
+            justify-content: center;
+        }
+        .golpes{
             height: auto;
             display: flex;
             justify-content: center;
         }
 
         button{
-            margin: 50px;
-            padding:10px;
+            margin: 20px;
+            padding:15px;
+            width: 70px;
             background: red;
             color: #fff;
             cursor: pointer;
@@ -101,6 +140,12 @@
             <div class="perfil-player">
                 <img src="perfil-iori.gif" alt="perfil">
             </div>
+            <div class="container-barra-vida">
+                <div class="barra-de-vida">
+
+                </div>
+                <img src="medidorvida.png" alt="" class="imagem-da-barra">
+            </div>
         </div>
         <div class="cenario-player">
             <div class="player" id="player">
@@ -114,11 +159,17 @@
     </div>
 
     <div class="controles">
-        <button id="esquerdo">esquerda</button>
-        <button id="pulo">pular</button>
-        <button id="direito">direita</button>
+        <button id="esquerdo"><i class="fas fa-arrow-left"></i></button>
+        <button id="pulo"><i class="fas fa-arrow-up"></i></button>
+        <button id="direito"><i class="fas fa-arrow-right"></i></button>
     </div>
 
+    <div class="golpes">
+        <button id="soco">Soco</button>
+        <button id="chute">Chute</button>
+        <button id="magia">Magia</button>
+    </div>
+    <audio src="msc1.mp3" id="iniciarMusica"></audio>
     <script>
         let player = document.getElementById("player")
         let imgPlayer = document.getElementById("imgPlayer")
@@ -126,7 +177,45 @@
         let btnPulo = document.getElementById("pulo")
         let btnDireito = document.getElementById("direito")
         let movimentoDireito = parseInt( player.style.marginLeft || 0)
-        
+        let musicaJogo = document.getElementById("iniciarMusica")
+        let btnsoco = document.getElementById("soco")
+        let btnchute = document.getElementById("chute")
+        let btnmagia = document.getElementById("magia")
+
+        function iniciarMusica() {
+            musicaJogo.play()
+        }
+
+        iniciarMusica()
+
+        btnmagia.addEventListener("click",()=>{
+            player.classList.add("pulo")
+            imgPlayer.src ="magia1.gif"
+
+            
+            
+            setTimeout(()=>{
+                player.classList.remove("pulo")
+                 imgPlayer.src ="ioriparado.gif"
+            },1000)
+        })
+
+        btnchute.addEventListener("click",()=>{
+            imgPlayer.src ="iorichute.gif"
+            
+            setTimeout(()=>{
+                 imgPlayer.src ="ioriparado.gif"
+            },900)
+        })
+
+        btnsoco.addEventListener("click",()=>{
+            imgPlayer.src ="iorisoco.gif"
+            
+            setTimeout(()=>{
+                 imgPlayer.src ="ioriparado.gif"
+            },900)
+        })
+
         btnEsquerdo.addEventListener("click",()=>{
             imgPlayer.src = "ioriandandoesquerda.gif"
             
