@@ -20,7 +20,7 @@
             height: 360px;
             border: 1px solid black;
             margin: 50px auto;
-            background-image: url("kof survive/imgs/fundo.gif");
+            background-image: url("imgs/fundo.gif");
             background-repeat: no-repeat;
             
         }
@@ -156,13 +156,13 @@
     <div class="game">
         <div class="cenario-ceu">
             <div class="perfil-player">
-                <img src="kof survive/imgs/perfil-iori.gif" alt="perfil">
+                <img src="imgs/perfil-iori.gif" alt="perfil">
             </div>
             <div class="container-barra-vida">
                 <div class="barra-de-vida">
 
                 </div>
-                <img src="kof survive/imgs/medidorvida.png" alt="" class="imagem-da-barra">
+                <img src="imgs/medidorvida.png" alt="" class="imagem-da-barra">
             </div>
         </div>
         <div class="btnIniciar" id="iniciar">
@@ -170,7 +170,7 @@
         </div>
         <div class="cenario-player">
             <div class="player" id="player">
-                <img src="kof survive/imgs/ioriparado.gif" alt="iori" id="imgPlayer">
+                <img src="imgs/ioriparado.gif" alt="iori" id="imgPlayer">
             </div>
         </div>
         <div class="cenario-chao">
@@ -217,33 +217,33 @@
 
         btnmagia.addEventListener("click",()=>{
             player.classList.add("pulo")
-            imgPlayer.src ="kof survive/imgs/magia1.gif"
+            imgPlayer.src ="imgs/magia1.gif"
             
             
             setTimeout(()=>{
                 player.classList.remove("pulo")
-                 imgPlayer.src ="kof survive/imgs/ioriparado.gif"
+                 imgPlayer.src ="imgs/ioriparado.gif"
             },1000)
         })
 
         btnchute.addEventListener("click",()=>{
-            imgPlayer.src ="kof survive/imgs/iorichute.gif"
+            imgPlayer.src ="imgs/iorichute.gif"
             
             setTimeout(()=>{
-                 imgPlayer.src ="kof survive/imgs/ioriparado.gif"
+                 imgPlayer.src ="imgs/ioriparado.gif"
             },900)
         })
 
         btnsoco.addEventListener("click",()=>{
-            imgPlayer.src ="kof survive/imgs/iorisoco.gif"
+            imgPlayer.src ="imgs/iorisoco.gif"
             
             setTimeout(()=>{
-                 imgPlayer.src ="kof survive/imgs/ioriparado.gif"
+                 imgPlayer.src ="imgs/ioriparado.gif"
             },900)
         })
 
         btnEsquerdo.addEventListener("click",()=>{
-            imgPlayer.src = "kof survive/imgs/ioriandandoesquerda.gif"
+            imgPlayer.src = "imgs/ioriandandoesquerda.gif"
             
             movimentoDireito -=  50
             if(movimentoDireito < 0){
@@ -253,7 +253,7 @@
                 player.style.marginLeft = movimentoDireito + "px"
             }
             setTimeout(()=>{
-                 imgPlayer.src ="kof survive/imgs/ioriparado.gif"
+                 imgPlayer.src ="imgs/ioriparado.gif"
             },1000)
             
         })
@@ -264,11 +264,11 @@
 
         btnPulo.addEventListener("click",()=>{
             player.classList.add("pulo")
-            imgPlayer.src ="kof survive/imgs/ioripulando.gif"
+            imgPlayer.src ="imgs/ioripulando.gif"
             player.style.marginLeft = movimentoDireito + "px"
             setTimeout(()=>{
                 player.classList.remove("pulo")
-                 imgPlayer.src ="kof survive/imgs/ioriparado.gif"
+                 imgPlayer.src ="imgs/ioriparado.gif"
             },1000)
         })
 
@@ -277,11 +277,11 @@
 
         btnDireito.addEventListener("click",()=>{
             
-            imgPlayer.src ="kof survive/imgs/ioriandandodireita.gif"
+            imgPlayer.src ="imgs/ioriandandodireita.gif"
             movimentoDireito +=  50
             player.style.marginLeft = movimentoDireito + "px"
             setTimeout(()=>{
-                 imgPlayer.src ="kof survive/imgs/ioriparado.gif"
+                 imgPlayer.src ="imgs/ioriparado.gif"
             },1000)
             
         })
