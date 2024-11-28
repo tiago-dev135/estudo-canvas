@@ -20,7 +20,7 @@
             height: 360px;
             border: 1px solid black;
             margin: 50px auto;
-            background-image: url("kof survive/imgs/fundo.gif");
+            background-image: url("/kof survive/imgs/fundo.gif");
             background-repeat: no-repeat;
             
         }
@@ -37,7 +37,7 @@
             width: 100%;
             
             display: flex;
-            justify-content: start;
+            justify-content: space-between;
             align-items: end;
         }
 
@@ -77,7 +77,7 @@
         }
 
 
-        .player{
+        .player, .inimigo{
             width: 80px;
             height: 80px;
             display: flex;
@@ -85,6 +85,13 @@
             align-items: center;
             transition: 1.5s;
             
+        }
+        .inimigo{
+            opacity: 0;
+            transition: 5s;
+        }
+        .inimigo img{
+            transform: scaleX(-1);
         }
 
         @keyframes pulo{
@@ -156,13 +163,13 @@
     <div class="game">
         <div class="cenario-ceu">
             <div class="perfil-player">
-                <img src="kof survive/imgs/perfil-iori.gif" alt="perfil">
+                <img src="/kof survive/imgs/perfil-iori.gif" alt="perfil">
             </div>
             <div class="container-barra-vida">
                 <div class="barra-de-vida">
 
                 </div>
-                <img src="kof survive/imgs/medidorvida.png" alt="" class="imagem-da-barra">
+                <img src="/kof survive/imgs/medidorvida.png" alt="" class="imagem-da-barra">
             </div>
         </div>
         <div class="btnIniciar" id="iniciar">
@@ -170,7 +177,10 @@
         </div>
         <div class="cenario-player">
             <div class="player" id="player">
-                <img src="kof survive/imgs/ioriparado.gif" alt="iori" id="imgPlayer">
+                <img src="/kof survive/imgs/ioriparado.gif" alt="iori" id="imgPlayer">
+            </div>
+            <div class="inimigo" id="inimigo">
+                <img src="/kof survive/imgs/akumaparado.gif" alt="iori" id="imgInimigo">
             </div>
         </div>
         <div class="cenario-chao">
@@ -190,9 +200,14 @@
         <button id="chute">Chute</button>
         <button id="magia">Magia</button>
     </div>
-    <audio src="msc1.mp3" id="iniciarMusica"></audio>
+    <audio src="sons/msc1.mp3" id="iniciarMusica"></audio>
+    <audio src="sons/Som de Raio.mp3" id="somraio"></audio>
+    <audio src="sons/iorichute.mp3" id="audiochute"></audio>
+    <audio src="sons/ioriomagia.mp3" id="audiomagia"></audio>
+    <audio src="sons/iorisoco.mp3" id="audiosoco"></audio>
     <script>
         let player = document.getElementById("player")
+        let inimigo = document.getElementById("inimigo")
         let imgPlayer = document.getElementById("imgPlayer")
         let btnEsquerdo = document.getElementById("esquerdo")
         let btnPulo = document.getElementById("pulo")
@@ -202,48 +217,69 @@
         let btnsoco = document.getElementById("soco")
         let btnchute = document.getElementById("chute")
         let btnmagia = document.getElementById("magia")
+        let somraio = document.getElementById("somraio")
 
-        function iniciarMusica() {
-            musicaJogo.play()
-        }
+
 
         function iniciar() {
-            document.getElementById("iniciar").classList.add("esconder")
-            iniciarMusica()
-        }
+    // Esconde o botão "iniciar"
+    document.getElementById("iniciar").classList.add("esconder");
+
+    // Toca o som de raio e altera a imagem para "akumaintro.gif" após 1 segundo
+    setTimeout(() => {
+        somraio.play();
+        inimigo.style.opacity = "1";
+        document.getElementById("imgInimigo").src = "imgs/akumaintro.gif";
+    }, 500);
+
+    // Define o src inicial (parado) antes de alterar para intro
+    document.getElementById("imgInimigo").src = "imgs/akumaparado.gif";
+
+    // Inicia a música de fundo do jogo
+    musicaJogo.play();
+
+    // Após 5 segundos, troca a imagem para "akumaparado.gif"
+    setTimeout(() => {
+        document.getElementById("imgInimigo").src = "imgs/akumaparado.gif";
+    }, 6000); // 1000ms + 5000ms = 6000ms (1 segundo + 5 segundos)
+}
+
+
 
 
         
 
         btnmagia.addEventListener("click",()=>{
             player.classList.add("pulo")
-            imgPlayer.src ="kof survive/imgs/magia1.gif"
-            
+            imgPlayer.src ="/kof survive/imgs/magia1.gif"
+            document.getElementById("audiomagia").play()
             
             setTimeout(()=>{
                 player.classList.remove("pulo")
-                 imgPlayer.src ="kof survive/imgs/ioriparado.gif"
+                 imgPlayer.src ="/kof survive/imgs/ioriparado.gif"
             },1000)
         })
 
         btnchute.addEventListener("click",()=>{
-            imgPlayer.src ="kof survive/imgs/iorichute.gif"
+            imgPlayer.src ="/kof survive/imgs/iorichute.gif"
+            document.getElementById("audiochute").play()
             
             setTimeout(()=>{
-                 imgPlayer.src ="kof survive/imgs/ioriparado.gif"
+                 imgPlayer.src ="/kof survive/imgs/ioriparado.gif"
             },900)
         })
 
         btnsoco.addEventListener("click",()=>{
-            imgPlayer.src ="kof survive/imgs/iorisoco.gif"
+            imgPlayer.src ="/kof survive/imgs/iorisoco.gif"
+            document.getElementById("audiosoco").play()
             
             setTimeout(()=>{
-                 imgPlayer.src ="kof survive/imgs/ioriparado.gif"
+                 imgPlayer.src ="/kof survive/imgs/ioriparado.gif"
             },900)
         })
 
         btnEsquerdo.addEventListener("click",()=>{
-            imgPlayer.src = "kof survive/imgs/ioriandandoesquerda.gif"
+            imgPlayer.src = "/kof survive/imgs/ioriandandoesquerda.gif"
             
             movimentoDireito -=  50
             if(movimentoDireito < 0){
@@ -253,7 +289,7 @@
                 player.style.marginLeft = movimentoDireito + "px"
             }
             setTimeout(()=>{
-                 imgPlayer.src ="kof survive/imgs/ioriparado.gif"
+                 imgPlayer.src ="/kof survive/imgs/ioriparado.gif"
             },1000)
             
         })
@@ -264,11 +300,11 @@
 
         btnPulo.addEventListener("click",()=>{
             player.classList.add("pulo")
-            imgPlayer.src ="kof survive/imgs/ioripulando.gif"
+            imgPlayer.src ="/kof survive/imgs/ioripulando.gif"
             player.style.marginLeft = movimentoDireito + "px"
             setTimeout(()=>{
                 player.classList.remove("pulo")
-                 imgPlayer.src ="kof survive/imgs/ioriparado.gif"
+                 imgPlayer.src ="/kof survive/imgs/ioriparado.gif"
             },1000)
         })
 
@@ -277,11 +313,11 @@
 
         btnDireito.addEventListener("click",()=>{
             
-            imgPlayer.src ="kof survive/imgs/ioriandandodireita.gif"
+            imgPlayer.src ="/kof survive/imgs/ioriandandodireita.gif"
             movimentoDireito +=  50
             player.style.marginLeft = movimentoDireito + "px"
             setTimeout(()=>{
-                 imgPlayer.src ="kof survive/imgs/ioriparado.gif"
+                 imgPlayer.src ="/kof survive/imgs/ioriparado.gif"
             },1000)
             
         })
