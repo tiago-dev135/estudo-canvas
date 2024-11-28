@@ -235,11 +235,12 @@
     // Define o src inicial (parado) antes de alterar para intro
     document.getElementById("imgInimigo").src = "imgs/akumaparado.gif";
 
-    // Inicia a música de fundo do jogo
-    musicaJogo.play();
+    
 
     // Após 5 segundos, troca a imagem para "akumaparado.gif"
     setTimeout(() => {
+        // Inicia a música de fundo do jogo
+    musicaJogo.play();
         document.getElementById("imgInimigo").src = "imgs/akumaparado.gif";
     }, 6000); // 1000ms + 5000ms = 6000ms (1 segundo + 5 segundos)
 }
