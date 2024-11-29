@@ -11,12 +11,13 @@
         *{
             margin: 0;
             padding: 0;
+            transition: 1s;
         }
         body{
            background: black;
         }
         .game{
-            width: 100%;
+            width: 400px;
             height: 360px;
             border: 1px solid black;
             margin: 50px auto;
@@ -35,7 +36,6 @@
         .cenario-player{
             height: 60%;
             width: 100%;
-            
             display: flex;
             justify-content: space-between;
             align-items: end;
@@ -79,13 +79,16 @@
 
         .player, .inimigo{
             width: 80px;
-            height: 80px;
+            height: 90px;
             display: flex;
             justify-content: center;
             align-items: center;
             transition: 1.5s;
+            transition: transform 1s ease;
             
         }
+
+        
         .inimigo{
             opacity: 0;
             transition: 5s;
@@ -200,11 +203,12 @@
         <button id="chute">Chute</button>
         <button id="magia">Magia</button>
     </div>
-    <audio src="sons/msc1.mp3" id="iniciarMusica"></audio>
+    <audio src="sons/msc2.mp3" id="iniciarMusica"></audio>
     <audio src="sons/Som de Raio.mp3" id="somraio"></audio>
     <audio src="sons/iorichute.mp3" id="audiochute"></audio>
     <audio src="sons/ioriomagia.mp3" id="audiomagia"></audio>
     <audio src="sons/iorisoco.mp3" id="audiosoco"></audio>
+    <audio src="sons/introluta1.mp3" id="mscintro"></audio>
     <script>
         let player = document.getElementById("player")
         let inimigo = document.getElementById("inimigo")
@@ -230,18 +234,24 @@
         somraio.play();
         inimigo.style.opacity = "1";
         document.getElementById("imgInimigo").src = "imgs/akumaintro.gif";
+        musicaJogo.play();
     }, 500);
 
     // Define o src inicial (parado) antes de alterar para intro
     document.getElementById("imgInimigo").src = "imgs/akumaparado.gif";
 
-    // Inicia a música de fundo do jogo
-    musicaJogo.play();
+    
 
     // Após 5 segundos, troca a imagem para "akumaparado.gif"
     setTimeout(() => {
+        
         document.getElementById("imgInimigo").src = "imgs/akumaparado.gif";
-    }, 6000); // 1000ms + 5000ms = 6000ms (1 segundo + 5 segundos)
+        // Inicia a música de fundo do jogo
+        document.getElementById("mscintro").play()
+        
+
+    }, 5000); // 1000ms + 5000ms = 6000ms (1 segundo + 5 segundos)
+    
 }
 
 
@@ -278,16 +288,17 @@
             },900)
         })
 
+        let posicao = 0
+
         btnEsquerdo.addEventListener("click",()=>{
             imgPlayer.src = "/kof survive/imgs/ioriandandoesquerda.gif"
-            
-            movimentoDireito -=  50
-            if(movimentoDireito < 0){
-                
-                movimentoDireito = 0;
-            }else{
-                player.style.marginLeft = movimentoDireito + "px"
+            posicao = -40 + posicao
+            if(posicao < 0){
+                posicao = 0
             }
+            player.style.transform = `translate(${posicao}px,0)`
+            
+            
             setTimeout(()=>{
                  imgPlayer.src ="/kof survive/imgs/ioriparado.gif"
             },1000)
@@ -295,8 +306,21 @@
         })
 
 
-
-        
+        btnDireito.addEventListener("click",()=>{
+            
+            imgPlayer.src ="/kof survive/imgs/ioriandandodireita.gif"
+            posicao = 40 + posicao
+            if(posicao > 320){
+                posicao = 320
+                imgPlayer.style.transform = "scaleX(-1)"
+            }
+            player.style.transform = `translate(${posicao}px,0)`
+            
+            setTimeout(()=>{
+                 imgPlayer.src ="/kof survive/imgs/ioriparado.gif"
+            },1000)
+            
+        })
 
         btnPulo.addEventListener("click",()=>{
             player.classList.add("pulo")
@@ -307,21 +331,6 @@
                  imgPlayer.src ="/kof survive/imgs/ioriparado.gif"
             },1000)
         })
-
-
-
-
-        btnDireito.addEventListener("click",()=>{
-            
-            imgPlayer.src ="/kof survive/imgs/ioriandandodireita.gif"
-            movimentoDireito +=  50
-            player.style.marginLeft = movimentoDireito + "px"
-            setTimeout(()=>{
-                 imgPlayer.src ="/kof survive/imgs/ioriparado.gif"
-            },1000)
-            
-        })
-
        
         
     </script>
