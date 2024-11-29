@@ -232,7 +232,7 @@
     // Toca o som de raio e altera a imagem para "akumaintro.gif" após 1 segundo
     setTimeout(() => {
         musicaJogo.play();
-        somraio.play();
+        
         inimigo.style.opacity = "1";
         document.getElementById("imgInimigo").src = "imgs/akumaintro.gif";
         
@@ -247,7 +247,7 @@
     setTimeout(() => {
         document.getElementById("imgInimigo").src = "imgs/akumaparado.gif";
         
-        
+        somraio.play();
 
     }, 5000); // 1000ms + 5000ms = 6000ms (1 segundo + 5 segundos)
     
