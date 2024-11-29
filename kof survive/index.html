@@ -203,7 +203,7 @@
         <button id="chute">Chute</button>
         <button id="magia">Magia</button>
     </div>
-    <audio src="sons/msc2.mp3" id="iniciarMusica"></audio>
+    <audio src="sons/akumaintro.mp3" id="iniciarMusica"></audio>
     <audio src="sons/Som de Raio.mp3" id="somraio"></audio>
     <audio src="sons/iorichute.mp3" id="audiochute"></audio>
     <audio src="sons/ioriomagia.mp3" id="audiomagia"></audio>
@@ -231,7 +231,7 @@
     
     // Toca o som de raio e altera a imagem para "akumaintro.gif" após 1 segundo
     setTimeout(() => {
-        musicaJogo.play();
+        somraio.play();
         
         inimigo.style.opacity = "1";
         document.getElementById("imgInimigo").src = "imgs/akumaintro.gif";
@@ -247,7 +247,8 @@
     setTimeout(() => {
         document.getElementById("imgInimigo").src = "imgs/akumaparado.gif";
         
-        somraio.play();
+        
+        musicaJogo.play();
 
     }, 5000); // 1000ms + 5000ms = 6000ms (1 segundo + 5 segundos)
     
