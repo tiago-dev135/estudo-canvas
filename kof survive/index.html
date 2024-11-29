@@ -245,8 +245,7 @@
     // Após 5 segundos, troca a imagem para "akumaparado.gif"
     setTimeout(() => {
         document.getElementById("imgInimigo").src = "imgs/akumaparado.gif";
-        // Inicia a música de fundo do jogo
-        document.getElementById("mscintro").play()
+        
         
 
     }, 5000); // 1000ms + 5000ms = 6000ms (1 segundo + 5 segundos)
@@ -289,9 +288,14 @@
 
         let posicao = 0
 
-        btnEsquerdo.addEventListener("click",()=>{
-            imgPlayer.src = "/kof survive/imgs/ioriandandoesquerda.gif"
+       btnEsquerdo.addEventListener("click",()=>{
+            imgPlayer.src = "imgs/ioriandandoesquerda.gif"
             
+            posicao = -40 + posicao
+            if(posicao < 0){
+                posicao = 0
+            }
+            player.style.transform = `translate(${posicao}px,0)`
             
             setTimeout(()=>{
                  imgPlayer.src ="imgs/ioriparado.gif"
@@ -302,16 +306,18 @@
 
         btnDireito.addEventListener("click",()=>{
             
-            imgPlayer.src ="/kof survive/imgs/ioriandandodireita.gif"
+            imgPlayer.src ="imgs/ioriandandodireita.gif"
             posicao = 40 + posicao
             if(posicao > 320){
                 posicao = 320
                 imgPlayer.style.transform = "scaleX(-1)"
             }
             player.style.transform = `translate(${posicao}px,0)`
+            //logica do inimigo
+            //logicaInimigo( player.style.transform = `translate(${posicao}px,0)`)
             
             setTimeout(()=>{
-                 imgPlayer.src ="/kof survive/imgs/ioriparado.gif"
+                 imgPlayer.src ="imgs/ioriparado.gif"
             },1000)
             
         })
@@ -327,18 +333,24 @@
         })
 
 
+        /*lógica do inimigo*/
+       function logicaInimigo(valorRecuperado) {
+            setInterval(()=>{
+                posicao = 320
+                posicao = -40 + posicao
+                inimigo.style.transform = `translate(${posicao},0)`
+                let posicaoImigo =  inimigo.style.transform = `translate(${posicao},0)`
+                if(valorRecuperado = posicaoImigo){
+                    alert("logica completa")
+                }
+            },5000)
+       }
 
 
-        btnDireito.addEventListener("click",()=>{
-            
-            imgPlayer.src ="/kof survive/imgs/ioriandandodireita.gif"
-            movimentoDireito +=  50
-            player.style.marginLeft = movimentoDireito + "px"
-            setTimeout(()=>{
-                 imgPlayer.src ="/kof survive/imgs/ioriparado.gif"
-            },1000)
-            
-        })
+
+
+
+        
 
        
         
