@@ -21,7 +21,7 @@
             height: 360px;
             border: 1px solid black;
             margin: 50px auto;
-            background-image: url("/kof survive/imgs/fundo.gif");
+            background-image: url("imgs/fundo.gif");
             background-repeat: no-repeat;
             
         }
@@ -166,13 +166,13 @@
     <div class="game">
         <div class="cenario-ceu">
             <div class="perfil-player">
-                <img src="/kof survive/imgs/perfil-iori.gif" alt="perfil">
+                <img src="imgs/perfil-iori.gif" alt="perfil">
             </div>
             <div class="container-barra-vida">
                 <div class="barra-de-vida">
 
                 </div>
-                <img src="/kof survive/imgs/medidorvida.png" alt="" class="imagem-da-barra">
+                <img src="imgs/medidorvida.png" alt="" class="imagem-da-barra">
             </div>
         </div>
         <div class="btnIniciar" id="iniciar">
@@ -180,10 +180,10 @@
         </div>
         <div class="cenario-player">
             <div class="player" id="player">
-                <img src="/kof survive/imgs/ioriparado.gif" alt="iori" id="imgPlayer">
+                <img src="imgs/ioriparado.gif" alt="iori" id="imgPlayer">
             </div>
             <div class="inimigo" id="inimigo">
-                <img src="/kof survive/imgs/akumaparado.gif" alt="iori" id="imgInimigo">
+                <img src="imgs/akumaparado.gif" alt="iori" id="imgInimigo">
             </div>
         </div>
         <div class="cenario-chao">
@@ -244,7 +244,6 @@
 
     // Após 5 segundos, troca a imagem para "akumaparado.gif"
     setTimeout(() => {
-        
         document.getElementById("imgInimigo").src = "imgs/akumaparado.gif";
         // Inicia a música de fundo do jogo
         document.getElementById("mscintro").play()
@@ -261,30 +260,30 @@
 
         btnmagia.addEventListener("click",()=>{
             player.classList.add("pulo")
-            imgPlayer.src ="/kof survive/imgs/magia1.gif"
+            imgPlayer.src ="imgs/magia1.gif"
             document.getElementById("audiomagia").play()
             
             setTimeout(()=>{
                 player.classList.remove("pulo")
-                 imgPlayer.src ="/kof survive/imgs/ioriparado.gif"
+                 imgPlayer.src ="imgs/ioriparado.gif"
             },1000)
         })
 
         btnchute.addEventListener("click",()=>{
-            imgPlayer.src ="/kof survive/imgs/iorichute.gif"
+            imgPlayer.src ="imgs/iorichute.gif"
             document.getElementById("audiochute").play()
             
             setTimeout(()=>{
-                 imgPlayer.src ="/kof survive/imgs/ioriparado.gif"
+                 imgPlayer.src ="imgs/ioriparado.gif"
             },900)
         })
 
         btnsoco.addEventListener("click",()=>{
-            imgPlayer.src ="/kof survive/imgs/iorisoco.gif"
+            imgPlayer.src ="imgs/iorisoco.gif"
             document.getElementById("audiosoco").play()
             
             setTimeout(()=>{
-                 imgPlayer.src ="/kof survive/imgs/ioriparado.gif"
+                 imgPlayer.src ="imgs/ioriparado.gif"
             },900)
         })
 
@@ -292,15 +291,10 @@
 
         btnEsquerdo.addEventListener("click",()=>{
             imgPlayer.src = "/kof survive/imgs/ioriandandoesquerda.gif"
-            posicao = -40 + posicao
-            if(posicao < 0){
-                posicao = 0
-            }
-            player.style.transform = `translate(${posicao}px,0)`
             
             
             setTimeout(()=>{
-                 imgPlayer.src ="/kof survive/imgs/ioriparado.gif"
+                 imgPlayer.src ="imgs/ioriparado.gif"
             },1000)
             
         })
@@ -324,13 +318,28 @@
 
         btnPulo.addEventListener("click",()=>{
             player.classList.add("pulo")
-            imgPlayer.src ="/kof survive/imgs/ioripulando.gif"
+            imgPlayer.src ="imgs/ioripulando.gif"
             player.style.marginLeft = movimentoDireito + "px"
             setTimeout(()=>{
                 player.classList.remove("pulo")
-                 imgPlayer.src ="/kof survive/imgs/ioriparado.gif"
+                 imgPlayer.src ="imgs/ioriparado.gif"
             },1000)
         })
+
+
+
+
+        btnDireito.addEventListener("click",()=>{
+            
+            imgPlayer.src ="/kof survive/imgs/ioriandandodireita.gif"
+            movimentoDireito +=  50
+            player.style.marginLeft = movimentoDireito + "px"
+            setTimeout(()=>{
+                 imgPlayer.src ="/kof survive/imgs/ioriparado.gif"
+            },1000)
+            
+        })
+
        
         
     </script>
