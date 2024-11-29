@@ -228,9 +228,10 @@
         function iniciar() {
     // Esconde o botão "iniciar"
     document.getElementById("iniciar").classList.add("esconder");
-    musicaJogo.play();
+    
     // Toca o som de raio e altera a imagem para "akumaintro.gif" após 1 segundo
     setTimeout(() => {
+        musicaJogo.play();
         somraio.play();
         inimigo.style.opacity = "1";
         document.getElementById("imgInimigo").src = "imgs/akumaintro.gif";
