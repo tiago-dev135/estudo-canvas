@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!--font awsome-->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+    <!--Google Fonts-->
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
     <title>Kof Survive</title>
 
     <style>
@@ -21,9 +23,15 @@
             height: 360px;
             border: 1px solid black;
             margin: 50px auto;
+            margin-bottom: 25px;
             background-image: url("imgs/fundo.gif");
             background-repeat: no-repeat;
             
+        }
+        p,button{
+            font-family: 'Press Start 2P', sans-serif;
+            font-size: 8px;
+            width: auto;
         }
         .cenario-ceu{
             height:30%;
@@ -48,6 +56,7 @@
             display: flex;
             flex-direction: column;
             align-items: start;
+            background: rgba(255, 0, 0, 0.478);
         }
         /*Medidor de vida*/
         .container-barra-vida{
@@ -85,7 +94,6 @@
             align-items: center;
             transition: 1.5s;
             transition: transform 1s ease;
-            
         }
 
         
@@ -99,11 +107,12 @@
 
         @keyframes pulo{
             0%{
-                padding-bottom: 50px;
+                padding-bottom: 10%;
                 transition: 1s;
             }
             100%{
-                padding-bottom: 50px;
+                padding-bottom: 15%;
+                transition: 1s;
                 
             }
         }
@@ -121,11 +130,27 @@
         }
 
         .controles{
-            margin-top: 25px;
+            width: 300px;
             height: auto;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .movimentos{
+            width: 100%;
+            height: auto;
+        }
+        .moverCima{
+            width: 100%;
             display: flex;
             justify-content: center;
         }
+        .moverBaixoLaterais{
+            display: flex;
+            justify-content: center;
+        }
+
         .golpes{
             height: auto;
             display: flex;
@@ -139,13 +164,25 @@
             background: red;
             color: #fff;
             cursor: pointer;
+            transition: 0.2s;
         }
-
+        button:hover{
+            color: black;
+            transition: 0.2s;
+        }
+        button img{
+            width: 100%;
+            height:30px;
+            display: flex;
+            justify-content: center;
+            
+        }
         .btnIniciar button{
             background: linear-gradient(rgb(199, 202, 6),rgb(191, 207, 17));
             padding: 10px;
             font-size: 15px;
             margin: 15px;
+            width: auto;
         }
 
         .btnIniciar{
@@ -166,13 +203,13 @@
     <div class="game">
         <div class="cenario-ceu">
             <div class="perfil-player">
-                <img src="imgs/perfil-iori.gif" alt="perfil">
+                <img src="imgs/ioriImgs/perfil-iori.gif" alt="perfil">
             </div>
             <div class="container-barra-vida">
                 <div class="barra-de-vida">
 
                 </div>
-                <img src="imgs/medidorvida.png" alt="" class="imagem-da-barra">
+                <img src="imgs/ioriImgs/medidorvida.png" alt="" class="imagem-da-barra">
             </div>
         </div>
         <div class="btnIniciar" id="iniciar">
@@ -180,10 +217,10 @@
         </div>
         <div class="cenario-player">
             <div class="player" id="player">
-                <img src="imgs/ioriparado.gif" alt="iori" id="imgPlayer">
+                <img src="imgs/ioriImgs/ioriparado.gif" alt="iori" id="imgPlayer">
             </div>
             <div class="inimigo" id="inimigo">
-                <img src="imgs/akumaparado.gif" alt="iori" id="imgInimigo">
+                <img src="imgs/akumaImgs/akumaparado.gif" alt="iori" id="imgInimigo">
             </div>
         </div>
         <div class="cenario-chao">
@@ -193,15 +230,30 @@
     </div>
 
     <div class="controles">
-        <button id="esquerdo"><i class="fas fa-arrow-left"></i></button>
-        <button id="pulo"><i class="fas fa-arrow-up"></i></button>
-        <button id="direito"><i class="fas fa-arrow-right"></i></button>
+       <div class="movimentos">
+            <div class="moverCima">
+                <button id="pulo"><i class="fas fa-arrow-up"></i></button>
+            </div>
+            <div class="moverBaixoLaterais">
+                <button id="esquerdo"><i class="fas fa-arrow-left"></i></button>
+                <button id="abaixar"><i class="fas fa-arrow-down"></i></button>
+                <button id="direito"><i class="fas fa-arrow-right"></i></button>
+            </div>
+       </div>
+        
     </div>
 
     <div class="golpes">
-        <button id="soco">Soco</button>
-        <button id="chute">Chute</button>
-        <button id="magia">Magia</button>
+        <button id="soco">
+            <p>Soco</p>
+        </button>
+        <button id="chute">
+            <p>Chute</p>
+
+        </button>
+        <button id="magia">
+            <p>Magia</p>
+        </button>
     </div>
     <audio src="sons/msc2.MP3" id="iniciarMusica"></audio>
     <audio src="sons/Som de Raio.mp3" id="somraio"></audio>
@@ -212,9 +264,11 @@
     <script>
         let player = document.getElementById("player")
         let inimigo = document.getElementById("inimigo")
+        let imgInimigo = document.getElementById("imgInimigo")
         let imgPlayer = document.getElementById("imgPlayer")
         let btnEsquerdo = document.getElementById("esquerdo")
         let btnPulo = document.getElementById("pulo")
+        let btnAbaixar =document.getElementById("abaixar")
         let btnDireito = document.getElementById("direito")
         let movimentoDireito = parseInt( player.style.marginLeft || 0)
         let musicaJogo = document.getElementById("iniciarMusica")
@@ -234,25 +288,26 @@
        
         somraio.play()
         inimigo.style.opacity = "1";
-        document.getElementById("imgInimigo").src = "imgs/akumaintro.gif";
+        document.getElementById("imgInimigo").src = "imgs/akumaImgs/akumaintro.gif";
         
     }, 500);
 
     musicaJogo.play();
 
     // Define o src inicial (parado) antes de alterar para intro
-    document.getElementById("imgInimigo").src = "imgs/akumaparado.gif";
+    document.getElementById("imgInimigo").src = "imgs/akumaImgs/akumaparado.gif";
 
     
 
     // Após 5 segundos, troca a imagem para "akumaparado.gif"
     setTimeout(() => {
-        document.getElementById("imgInimigo").src = "imgs/akumaparado.gif";
+        document.getElementById("imgInimigo").src = "imgs/akumaImgs/akumaparado.gif";
         
         
        
 
     }, 5000); // 1000ms + 5000ms = 6000ms (1 segundo + 5 segundos)
+    //logica do inimigo
     
 }
 
@@ -263,37 +318,37 @@
 
         btnmagia.addEventListener("click",()=>{
             player.classList.add("pulo")
-            imgPlayer.src ="imgs/magia1.gif"
+            imgPlayer.src ="imgs/ioriImgs/magia1.gif"
             document.getElementById("audiomagia").play()
             
             setTimeout(()=>{
                 player.classList.remove("pulo")
-                 imgPlayer.src ="imgs/ioriparado.gif"
+                 imgPlayer.src ="imgs/ioriImgs/ioriparado.gif"
             },1000)
         })
 
         btnchute.addEventListener("click",()=>{
-            imgPlayer.src ="imgs/iorichute.gif"
+            imgPlayer.src ="imgs/ioriImgs/iorichute.gif"
             document.getElementById("audiochute").play()
             
             setTimeout(()=>{
-                 imgPlayer.src ="imgs/ioriparado.gif"
+                 imgPlayer.src ="imgs/ioriImgs/ioriparado.gif"
             },900)
         })
 
         btnsoco.addEventListener("click",()=>{
-            imgPlayer.src ="imgs/iorisoco.gif"
+            imgPlayer.src ="imgs/ioriImgs/iorisoco.gif"
             document.getElementById("audiosoco").play()
             
             setTimeout(()=>{
-                 imgPlayer.src ="imgs/ioriparado.gif"
+                 imgPlayer.src ="imgs/ioriImgs/ioriparado.gif"
             },900)
         })
 
         let posicao = 0
 
        btnEsquerdo.addEventListener("click",()=>{
-            imgPlayer.src = "imgs/ioriandandoesquerda.gif"
+            imgPlayer.src = "imgs/ioriImgs/ioriandandoesquerda.gif"
             
             posicao = -40 + posicao
             if(posicao < 0){
@@ -302,53 +357,66 @@
             player.style.transform = `translate(${posicao}px,0)`
             
             setTimeout(()=>{
-                 imgPlayer.src ="imgs/ioriparado.gif"
+                 imgPlayer.src ="imgs/ioriImgs/ioriparado.gif"
             },1000)
             
+        })
+
+        btnAbaixar.addEventListener("click",()=>{
+            imgPlayer.src ="imgs/ioriImgs/ioriAbaixar.gif"
+            
+            
+            setTimeout(()=>{
+                 imgPlayer.src ="imgs/ioriImgs//ioriparado.gif"
+            },900)
         })
 
 
         btnDireito.addEventListener("click",()=>{
             
-            imgPlayer.src ="imgs/ioriandandodireita.gif"
+            imgPlayer.src ="imgs/ioriImgs/ioriandandodireita.gif"
             posicao = 40 + posicao
             if(posicao > 320){
                 posicao = 320
                 imgPlayer.style.transform = "scaleX(-1)"
             }
             player.style.transform = `translate(${posicao}px,0)`
-            //logica do inimigo
-            //logicaInimigo( player.style.transform = `translate(${posicao}px,0)`)
+            
             
             setTimeout(()=>{
-                 imgPlayer.src ="imgs/ioriparado.gif"
+                 imgPlayer.src ="imgs/ioriImgs/ioriparado.gif"
             },1000)
             
         })
 
         btnPulo.addEventListener("click",()=>{
             player.classList.add("pulo")
-            imgPlayer.src ="imgs/ioripulando.gif"
+            imgPlayer.src ="imgs/ioriImgs/ioripulando.gif"
             player.style.marginLeft = movimentoDireito + "px"
             setTimeout(()=>{
                 player.classList.remove("pulo")
-                 imgPlayer.src ="imgs/ioriparado.gif"
+                 imgPlayer.src ="imgs/ioriImgs/ioriparado.gif"
             },1000)
         })
 
 
-        /*lógica do inimigo*/
-       function logicaInimigo(valorRecuperado) {
-            setInterval(()=>{
-                posicao = 320
-                posicao = -40 + posicao
-                inimigo.style.transform = `translate(${posicao},0)`
-                let posicaoImigo =  inimigo.style.transform = `translate(${posicao},0)`
-                if(valorRecuperado = posicaoImigo){
-                    alert("logica completa")
-                }
-            },5000)
-       }
+        function logicaInimigo(valorRecuperado) {
+    // Parse o valor inicial para garantir que é um número
+    let posicaoAtual = parseInt(valorRecuperado, 10) || 0; 
+    imgInimigo.src = "imgs/akumaImgs/akumaAndandoDireita.gif"
+    setTimeout(() => {
+        // Atualize a posição
+        posicaoAtual -= 40;
+
+        // Aplique o deslocamento com a transformação CSS
+        inimigo.style.transform = `translateX(${posicaoAtual}px)`;
+        imgInimigo.src = "imgs/akumaImgs/akumaparado.gif"
+
+        console.log(`Nova posição do inimigo: ${posicaoAtual}px`);
+    }, 1000);
+    
+}
+
 
 
 
